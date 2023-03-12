@@ -5,8 +5,8 @@ const { signinUser, registerUser } = require("../controllers/userController");
 const router = express.Router();
 
 // routes
-router.post("/signup",registerUser);
 router.post("/signin", signinUser);
+router.post("/signup",registerUser);
 
 
 

@@ -3,6 +3,7 @@ const moragan = require("morgan");
 const dotenv = require("dotenv");
 const connectDB = require("./config/db");
 const userRoutes = require("./routes/userRoutes");
+const adminRoutes = require("./routes/adminRoutes");
 const { errorHandler, notFound } = require("./middlewares/errorMiddlewares");
 
 const app = express();
@@ -16,13 +17,14 @@ connectDB();
 app.use(express.json());
 // app.use(moragan("dev"));
 
-app.get("/",(req,res)=>{
-  res.send("API is running")
+app.get("/", (req, res) => {
+  res.send("API is running");
 });
 
-
 // routes
+app.use("/api/admin", adminRoutes);
 app.use("/api/users", userRoutes);
+
 app.use(notFound);
 app.use(errorHandler);
 
